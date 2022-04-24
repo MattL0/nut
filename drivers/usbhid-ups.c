@@ -1643,12 +1643,12 @@ static void ups_status_set(void)
 
 
 	if (!(ups_status & STATUS(ONLINE))) {
-		status_set("OB");		/* on battery */
+		status_set("On Battery");		/* on battery */
 	} else if ((ups_status & STATUS(DISCHRG))) {
 			/* if online */
 		if (onlinedischarge) {
 			/* if we treat OL+DISCHRG as being offline */
-			status_set("OB");	/* on battery */
+			status_set("On Battery");	/* on battery */
 		} else {
 			if (!(ups_status & STATUS(CAL))) {
 				/* if in OL+DISCHRG unknowingly, warn user */
@@ -1658,42 +1658,42 @@ static void ups_status_set(void)
 				__func__, upsname);
 			}
 			/* if we're calibrating */
-			status_set("OL");	/* on line */
+			status_set("Online");	/* on line */
 		}
 	} else if ((ups_status & STATUS(ONLINE))) {
-		status_set("OL");
+		status_set("Online");
 	}
 	if ((ups_status & STATUS(DISCHRG)) &&
 		!(ups_status & STATUS(DEPLETED))) {
-		status_set("DISCHRG");		/* discharging */
+		status_set("On Battery");		/* discharging */
 	}
 	if ((ups_status & STATUS(CHRG)) &&
 		!(ups_status & STATUS(FULLYCHARGED))) {
-		status_set("CHRG");		/* charging */
+		status_set("Online");		/* charging */
 	}
 	if (ups_status & (STATUS(LOWBATT) | STATUS(TIMELIMITEXP) | STATUS(SHUTDOWNIMM))) {
-		status_set("LB");		/* low battery */
+		status_set("Low Battery");		/* low battery */
 	}
 	if (ups_status & STATUS(OVERLOAD)) {
-		status_set("OVER");		/* overload */
+		status_set("Overload");		/* overload */
 	}
 	if (ups_status & STATUS(REPLACEBATT)) {
-		status_set("RB");		/* replace batt */
+		status_set("Replace Battery");		/* replace batt */
 	}
 	if (ups_status & STATUS(TRIM)) {
-		status_set("TRIM");		/* SmartTrim */
+		status_set("Smartrim");		/* SmartTrim */
 	}
 	if (ups_status & STATUS(BOOST)) {
-		status_set("BOOST");		/* SmartBoost */
+		status_set("SmartBoost");		/* SmartBoost */
 	}
 	if (ups_status & (STATUS(BYPASSAUTO) | STATUS(BYPASSMAN))) {
-		status_set("BYPASS");		/* on bypass */
+		status_set("Bypass");		/* on bypass */
 	}
 	if (ups_status & STATUS(OFF)) {
-		status_set("OFF");		/* ups is off */
+		status_set("Off");		/* ups is off */
 	}
 	if (ups_status & STATUS(CAL)) {
-		status_set("CAL");		/* calibration */
+		status_set("Calibrating");		/* calibration */
 	}
 }
 
